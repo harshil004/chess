@@ -1,0 +1,54 @@
+.chessboard {
+    display: grid;
+    width: 800px;
+    height: 800px;
+    border: 2px solid black;
+
+    .black {
+        background-color: black;
+        color: white;
+    }
+
+    .white {
+        background-color: white;
+    }
+}
+
+.selected {
+    border: 3px solid red;
+    box-sizing: border-box;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pawn-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.pawn-img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.pawn-img.NORTH {
+    transform: rotate(270deg);
+}
+
+.pawn-img.EAST {
+    transform: rotate(180deg);
+}
+
+.pawn-img.SOUTH {
+    transform: rotate(90deg);
+}
+
+.pawn-img.WEST {
+    transform: rotate(0deg);
+}

@@ -1,0 +1,45 @@
+<div class="controls">
+    @if(isFirstTime){
+    <label>X: <input type="number" [(ngModel)]="x" min="0" max="7" /></label>
+    <label>Y: <input type="number" [(ngModel)]="y" min="0" max="7" /></label>
+    <label>
+        Direction:
+        <select [(ngModel)]="placeDirection">
+            <option *ngFor="let dir of directions" [value]="dir">{{ dir }}</option>
+        </select>
+
+    </label>
+    <label>
+        Color:
+        <input type="radio" [(ngModel)]="color" value="white" /> White
+        <input type="radio" [(ngModel)]="color" value="black" /> Black
+    </label>
+    }@else{
+    <button type="button" class="btn btn-dark" (click)="turnLeft()">RIGHT</button>
+    <button (click)="move(1)" type="button" class="btn btn-success">MOVE 1</button>
+    @if (isFirstTimeMove) {
+    <button (click)="move(2)" type="button" class="btn btn-success">MOVE 2</button>
+    }
+    <button type="button" class="btn btn-dark" (click)=" turnRight() ">LEFT</button>
+    <button (click)="report()" type="button" class="btn btn-info">REPORT</button>
+    }
+    <button type="button" class="btn btn-primary" (click)="place(x, y, direction)">PLACE</button>
+</div>
+<div class="m-auto">
+    <div class="chessboard">
+        @for (row of row; track $index) {
+        <div class="row m-0 p-0">
+            @for (col of col; track $index) {
+            <div class="col" [ngClass]="(row + col) % 2 != 0 ? 'black' : 'white'">
+                {{row}} {{col}}
+                <div *ngIf="isSelected(row, col) && !isFirstTime" class="pawn-container">
+                    <img src="../../../assets/pawn-white.png" alt="Pawn" class="pawn-img" />
+                    <img src="../../../assets/right-arrow.png" alt="Pawn" class="pawn-img"
+                        [ngClass]="currentDirection" />
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>
